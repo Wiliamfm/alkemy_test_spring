@@ -1,5 +1,8 @@
 -- init data base (Postgres)
 
+-- For hibernate
+CREATE SEQUENCE hibernate_sequence;
+
 create table genre(
     id serial primary key,
     name varchar(50) not null unique,

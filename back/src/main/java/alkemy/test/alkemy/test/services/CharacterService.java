@@ -1,6 +1,5 @@
 package alkemy.test.alkemy.test.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,7 @@ public class CharacterService {
         return mapper.toCharactersDAO(characters);
     }
 
-    public CharacterDAO save(CharacterDAO characterDAO){
-        //return characterRepository.save();
-        return null;
+    public CharacterDAO create(CharacterDAO characterDAO){
+        return mapper.toCharacterDAO(characterRepository.save(mapper.toCharacter(characterDAO)));
     }
 }
