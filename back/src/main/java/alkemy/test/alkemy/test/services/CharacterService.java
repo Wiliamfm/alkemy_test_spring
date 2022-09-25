@@ -7,19 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import alkemy.test.alkemy.test.repositories.CharacterRepository;
-import alkemy.test.alkemy.test.dao.CharacterDAO;;
+import alkemy.test.alkemy.test.Mapper.CharacterMapper;
+import alkemy.test.alkemy.test.dao.CharacterDAO;
+import alkemy.test.alkemy.test.entities.Character;;
 
 @Service
 public class CharacterService {
 
     @Autowired
     private CharacterRepository characterRepository;
+
+    @Autowired
+    private CharacterMapper mapper;
     
     public List<CharacterDAO> getAll(){
-        List<CharacterDAO> characters= new ArrayList<>();
-        characterRepository.findAll().forEach(character -> {
-            characters.add(new CharacterDAO(character.getImage(), character.getName()));
-        });
-        return characters;
+        List<Character> characters= (List<Character>) characterRepository.findAll();
+        return mapper.toCharactersDAO(characters);
+    }
+
+    public CharacterDAO save(CharacterDAO characterDAO){
+        //return characterRepository.save();
+        return null;
     }
 }
