@@ -31,6 +31,6 @@ create table character(
 
 create table character_movie(
     id serial primary key,
-    actor integer references actor(id),
+    character integer references character(id),
     movie integer references movie(id)
 );
