@@ -7,10 +7,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import alkemy.test.alkemy.test.dao.CharacterDAO;
+import alkemy.test.alkemy.test.dtos.CharacterDTO;
 import alkemy.test.alkemy.test.entities.Character;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = MovieMapper.class)
 public interface CharacterMapper {
 
     @Mappings({
@@ -18,16 +18,17 @@ public interface CharacterMapper {
         @Mapping(source = "name", target = "name"),
         @Mapping(source = "age", target = "age"),
         @Mapping(source = "weight", target = "weight"),
-        @Mapping(source = "history", target = "history")
+        @Mapping(source = "history", target = "history"),
+        @Mapping(source = "movies", target = "movies")
     })
-    CharacterDAO toCharacterDAO(Character character);
+    CharacterDTO toCharacterDTO(Character character);
 
-    List<CharacterDAO> toCharactersDAO(List<Character> characters);
+    List<CharacterDTO> toCharactersDTO(List<Character> characters);
 
     @InheritInverseConfiguration
     @Mappings({
         @Mapping(target = "id", ignore = true)
     })
-    Character toCharacter(CharacterDAO characterDAO);
+    Character toCharacter(CharacterDTO characterDTO);
     
 }

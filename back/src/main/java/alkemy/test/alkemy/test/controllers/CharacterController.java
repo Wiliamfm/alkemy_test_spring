@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import alkemy.test.alkemy.test.dao.CharacterDAO;
+import alkemy.test.alkemy.test.dtos.AbstractResponse;
+import alkemy.test.alkemy.test.dtos.CharacterDTO;
+import alkemy.test.alkemy.test.dtos.ErrorDTO;
 import alkemy.test.alkemy.test.services.CharacterService;
 
 @RestController
@@ -22,16 +24,18 @@ public class CharacterController {
     private CharacterService characterService;
     
     @GetMapping
-    public ResponseEntity<List<CharacterDAO>> getAll(){
-        return new ResponseEntity<List<CharacterDAO>>(characterService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<CharacterDTO>> getAll(){
+        return new ResponseEntity<List<CharacterDTO>>(characterService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<CharacterDAO> create(@RequestBody CharacterDAO characterDAO){
+    public ResponseEntity<? extends AbstractResponse> create(@RequestBody CharacterDTO characterDAO){
         try{
-            return new ResponseEntity<CharacterDAO>(characterService.create(characterDAO), HttpStatus.CREATED);
+            return new ResponseEntity<CharacterDTO>(characterService.create(characterDAO), HttpStatus.CREATED);
         }catch(IllegalArgumentException illegalArgumentException){
-            return new ResponseEntity<CharacterDAO>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<ErrorDTO>(new ErrorDTO(illegalArgumentException.getMessage()), HttpStatus.NOT_FOUND);
+        } catch(Exception e){
+            return new ResponseEntity<ErrorDTO>(new ErrorDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 

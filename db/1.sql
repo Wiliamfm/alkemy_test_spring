@@ -32,7 +32,7 @@ create table character(
     history varchar
 );
 
-create table character_movie(
+create table characters_movies(
     id serial primary key,
     character integer references character(id),
     movie integer references movie(id)

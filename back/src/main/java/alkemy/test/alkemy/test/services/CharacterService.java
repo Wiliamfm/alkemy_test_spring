@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import alkemy.test.alkemy.test.repositories.CharacterRepository;
 import alkemy.test.alkemy.test.Mapper.CharacterMapper;
-import alkemy.test.alkemy.test.dao.CharacterDAO;
+import alkemy.test.alkemy.test.dtos.CharacterDTO;
 import alkemy.test.alkemy.test.entities.Character;;
 
 @Service
@@ -18,13 +18,27 @@ public class CharacterService {
 
     @Autowired
     private CharacterMapper mapper;
+
+    public CharacterDTO getById(int id){
+        return mapper.toCharacterDTO(characterRepository.findById(id).map(character -> {
+            return character;
+        }).orElse(null));
+    }
     
-    public List<CharacterDAO> getAll(){
+    public List<CharacterDTO> getAll(){
         List<Character> characters= (List<Character>) characterRepository.findAll();
-        return mapper.toCharactersDAO(characters);
+        return mapper.toCharactersDTO(characters);
     }
 
-    public CharacterDAO create(CharacterDAO characterDAO){
-        return mapper.toCharacterDAO(characterRepository.save(mapper.toCharacter(characterDAO)));
+    public CharacterDTO create(CharacterDTO characterDTO){
+        return mapper.toCharacterDTO(characterRepository.save(mapper.toCharacter(characterDTO)));
     }
+
+    public CharacterDTO update(CharacterDTO characterDTO){
+        if( getById(mapper.toCharacter(characterDTO).getId()) != null){
+            return mapper.toCharacterDTO(characterRepository.save(mapper.toCharacter(characterDTO)));
+        }
+        return null;
+    }
+
 }
