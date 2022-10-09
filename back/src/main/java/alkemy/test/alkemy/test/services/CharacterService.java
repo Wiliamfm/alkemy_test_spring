@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import alkemy.test.alkemy.test.repositories.CharacterRepository;
 import alkemy.test.alkemy.test.Mapper.CharacterMapper;
@@ -30,15 +31,29 @@ public class CharacterService {
         return mapper.toCharactersDTO(characters);
     }
 
-    public CharacterDTO create(CharacterDTO characterDTO){
+    @Transactional
+    public CharacterDTO create(CharacterDTO characterDTO) throws IllegalArgumentException{
         return mapper.toCharacterDTO(characterRepository.save(mapper.toCharacter(characterDTO)));
     }
 
-    public CharacterDTO update(CharacterDTO characterDTO){
-        if( getById(mapper.toCharacter(characterDTO).getId()) != null){
-            return mapper.toCharacterDTO(characterRepository.save(mapper.toCharacter(characterDTO)));
-        }
-        return null;
+    @Transactional
+    public CharacterDTO update(int id, CharacterDTO characterDTO) throws IllegalArgumentException{
+        Character character= mapper.toCharacter(getById(id));
+        character.setId(id);
+        character.setImage(characterDTO.getImage());
+        character.setName(characterDTO.getName());
+        character.setAge(characterDTO.getAge());
+        character.setWeight(characterDTO.getWeight());
+        character.setHistory(characterDTO.getHistory());
+        System.out.println(character);
+        return mapper.toCharacterDTO(characterRepository.save(character));
+    }
+
+    @Transactional
+    public CharacterDTO delete(int id) throws IllegalArgumentException{
+        CharacterDTO character= getById(id);
+        characterRepository.deleteById(id);
+        return character;
     }
 
 }

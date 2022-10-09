@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 import alkemy.test.alkemy.test.dtos.GenreDTO;
 import alkemy.test.alkemy.test.entities.Genre;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface GenreMapper {
 
     @Mapping(source = "name", target = "name")

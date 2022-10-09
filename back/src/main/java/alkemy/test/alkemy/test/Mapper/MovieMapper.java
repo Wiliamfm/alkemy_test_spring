@@ -15,12 +15,12 @@ public interface MovieMapper {
     @Mapping(source = "creationDate", target = "creationDate")
     @Mapping(source = "calification", target = "calification")
     //@Mapping(source = "characters", target = "characters")
-    @Mapping(source = "genre", target = "genre")
+    @Mapping(source = "genres", target = "genres")
     MovieDTO toMovieDTO(Movie movie);
 
     @InheritInverseConfiguration
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "characters", ignore = true)
-    Movie toMovie (MovieDTO movieDAO);
+    Movie toMovie (MovieDTO movieDTO);
     
 }

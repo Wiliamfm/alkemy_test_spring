@@ -15,6 +15,6 @@ public class MovieDTO extends AbstractResponse{
     private LocalDate creationDate;
     private int calification;
     //private List<CharacterDTO> characters;
-    private GenreDTO genre;
+    private List<GenreDTO> genres;
 
 }

@@ -1,7 +1,5 @@
 package alkemy.test.alkemy.test.dtos;
 
-import java.util.List;
-
 import javax.persistence.Column;
 
 import lombok.AllArgsConstructor;

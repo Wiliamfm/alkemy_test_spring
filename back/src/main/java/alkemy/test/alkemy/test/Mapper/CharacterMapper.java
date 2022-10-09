@@ -26,9 +26,7 @@ public interface CharacterMapper {
     List<CharacterDTO> toCharactersDTO(List<Character> characters);
 
     @InheritInverseConfiguration
-    @Mappings({
-        @Mapping(target = "id", ignore = true)
-    })
+    @Mapping(target = "id", ignore = true)
     Character toCharacter(CharacterDTO characterDTO);
     
 }
