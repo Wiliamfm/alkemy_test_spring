@@ -2,11 +2,13 @@ package alkemy.test.alkemy.test.dtos;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
+@AllArgsConstructor
 public class CharacterDTO extends AbstractResponse{
     
     private String image;

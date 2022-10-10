@@ -23,7 +23,7 @@ public class CharacterService {
     public CharacterDTO getById(int id){
         return mapper.toCharacterDTO(characterRepository.findById(id).map(character -> {
             return character;
-        }).orElse(null));
+        }).orElseGet(null), "");
     }
 
     public List<CharacterDTO> getByName(String name){
@@ -58,7 +58,6 @@ public class CharacterService {
         character.setAge(characterDTO.getAge());
         character.setWeight(characterDTO.getWeight());
         character.setHistory(characterDTO.getHistory());
-        System.out.println(character);
         return mapper.toCharacterDTO(characterRepository.save(character));
     }
 

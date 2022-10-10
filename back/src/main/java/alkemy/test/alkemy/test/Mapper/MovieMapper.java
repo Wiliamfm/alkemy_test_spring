@@ -1,5 +1,7 @@
 package alkemy.test.alkemy.test.Mapper;
 
+import java.util.List;
+
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,6 +20,8 @@ public interface MovieMapper {
     //@Mapping(source = "characters", target = "characters")
     @Mapping(source = "genres", target = "genres")
     MovieDTO toMovieDTO(Movie movie);
+
+    List<MovieDTO> toMoviesDTO(List<Movie> movies);
 
     @InheritInverseConfiguration
     @Mapping(target = "characters", ignore = true)
