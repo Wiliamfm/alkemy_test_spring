@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-08T17:59:41-0500",
+    date = "2022-10-09T19:13:11-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.jar, environment: Java 17.0.4 (Private Build)"
 )
 @Component
@@ -29,6 +29,9 @@ public class MovieMapperImpl implements MovieMapper {
 
         MovieDTO movieDTO = new MovieDTO();
 
+        if ( movie.getId() != null ) {
+            movieDTO.setId( movie.getId() );
+        }
         movieDTO.setImage( movie.getImage() );
         movieDTO.setTitle( movie.getTitle() );
         movieDTO.setCreationDate( movie.getCreationDate() );
@@ -48,6 +51,7 @@ public class MovieMapperImpl implements MovieMapper {
 
         Movie movie = new Movie();
 
+        movie.setId( movieDTO.getId() );
         movie.setImage( movieDTO.getImage() );
         movie.setTitle( movieDTO.getTitle() );
         movie.setCreationDate( movieDTO.getCreationDate() );

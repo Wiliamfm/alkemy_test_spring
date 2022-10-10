@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class MovieDTO extends AbstractResponse{
 
+    private int id;
     private String image;
     private String title;
     private LocalDate creationDate;

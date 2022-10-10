@@ -10,6 +10,7 @@ import alkemy.test.alkemy.test.entities.Movie;
 @Mapper(componentModel = "spring", uses = GenreMapper.class)
 public interface MovieMapper {
 
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "image", target = "image")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "creationDate", target = "creationDate")
@@ -19,7 +20,6 @@ public interface MovieMapper {
     MovieDTO toMovieDTO(Movie movie);
 
     @InheritInverseConfiguration
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "characters", ignore = true)
     Movie toMovie (MovieDTO movieDTO);
     

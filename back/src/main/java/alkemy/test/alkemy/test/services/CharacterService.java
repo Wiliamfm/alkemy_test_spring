@@ -25,7 +25,20 @@ public class CharacterService {
             return character;
         }).orElse(null));
     }
+
+    public List<CharacterDTO> getByName(String name){
+        return mapper.toCharactersDTO(characterRepository.findByNameContainingIgnoreCase(name));
+
+    }
     
+    public List<CharacterDTO> getByAge(int age){
+        return mapper.toCharactersDTO(characterRepository.findByAge(age));
+    }
+
+    public List<CharacterDTO> getByMovie(int movieId){
+        return mapper.toCharactersDTO(characterRepository.findByMovies(movieId));
+    }
+
     public List<CharacterDTO> getAll(){
         List<Character> characters= (List<Character>) characterRepository.findAll();
         return mapper.toCharactersDTO(characters);
