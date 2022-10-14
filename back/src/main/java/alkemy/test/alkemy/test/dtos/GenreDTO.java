@@ -1,17 +1,13 @@
 package alkemy.test.alkemy.test.dtos;
 
-import javax.persistence.Column;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper=false)
-public class GenreDTO extends AbstractResponse{
+public class GenreDTO{
 
-    @Column(unique = true)
+    private int id;
     private String name;
     private String image;
     
