@@ -19,6 +19,9 @@ import lombok.Data;
 @Data
 public class Movie {
 
+    public Movie(String image2, String title2, LocalDate creationDate2) {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

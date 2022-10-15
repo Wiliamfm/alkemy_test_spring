@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-09T19:42:37-0500",
+    date = "2022-10-15T18:35:09-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.jar, environment: Java 17.0.4 (Private Build)"
 )
 @Component
@@ -20,6 +20,61 @@ public class CharacterMapperImpl implements CharacterMapper {
 
     @Autowired
     private MovieMapper movieMapper;
+
+    @Override
+    public CharacterDTO toCharacterDTO(Character character) {
+        if ( character == null ) {
+            return null;
+        }
+
+        int id = 0;
+        String image = null;
+        String name = null;
+        int age = 0;
+        double weight = 0.0d;
+        String history = null;
+        List<MovieDTO> movies = null;
+
+        if ( character.getId() != null ) {
+            id = character.getId();
+        }
+        image = character.getImage();
+        name = character.getName();
+        if ( character.getAge() != null ) {
+            age = character.getAge();
+        }
+        if ( character.getWeight() != null ) {
+            weight = character.getWeight();
+        }
+        history = character.getHistory();
+        movies = movieMapper.toMoviesDTO( character.getMovies() );
+
+        CharacterDTO characterDTO = new CharacterDTO( id, image, name, age, weight, history, movies );
+
+        return characterDTO;
+    }
+
+    @Override
+    public CharacterDTO tCharacterDTO(String name, String image) {
+        if ( name == null && image == null ) {
+            return null;
+        }
+
+        String name1 = null;
+        name1 = name;
+        String image1 = null;
+        image1 = image;
+
+        int id = 0;
+        int age = 0;
+        double weight = 0.0d;
+        String history = null;
+        List<MovieDTO> movies = null;
+
+        CharacterDTO characterDTO = new CharacterDTO( id, image1, name1, age, weight, history, movies );
+
+        return characterDTO;
+    }
 
     @Override
     public List<CharacterDTO> toCharactersDTO(List<Character> characters) {

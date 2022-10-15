@@ -17,7 +17,7 @@ public class CharacterDTO{
     private String history;
     private List<MovieDTO> movies;
 
-    public CharacterDTO(String image, String name){
+    protected CharacterDTO(String image, String name){
         this.image= image;
         this.name= name;
     }

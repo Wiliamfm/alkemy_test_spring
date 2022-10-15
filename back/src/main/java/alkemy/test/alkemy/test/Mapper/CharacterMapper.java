@@ -14,15 +14,22 @@ public interface CharacterMapper {
 
     CharacterDTO toCharacterDTO(Character character);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "age", ignore = true)
+    @Mapping(target = "weight", ignore = true)
+    @Mapping(target = "history", ignore = true)
+    @Mapping(target = "movies", ignore = true)
+    CharacterDTO tCharacterDTO(String name, String image);
+
     List<CharacterDTO> toCharactersDTO(List<Character> characters);
 
     @InheritInverseConfiguration(name = "toCharacterDTO")
     @Mapping(target = "id", ignore = true)
     Character toCharacter(CharacterDTO characterDTO);
 
-    default CharacterDTO toCharacterDTO(Character character, String o){
-        return new CharacterDTO(character.getImage(), character.getName());
-    }
+    //default CharacterDTO toCharacterDTO(Character character, String o){
+        //return new CharacterDTO(character.getImage(), character.getName());
+    //}
 
     //default CharacterDTO toCharacterDTO(Character character){
         //return new CharacterDTO(character.getImage(), character.getName(), character.getAge(), character.getWeight(), character.getHistory(), null);

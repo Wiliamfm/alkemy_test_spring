@@ -23,7 +23,7 @@ public class CharacterService {
     public CharacterDTO getById(int id){
         return mapper.toCharacterDTO(characterRepository.findById(id).map(character -> {
             return character;
-        }).orElseGet(null), "");
+        }).orElseGet(null));
     }
 
     public List<CharacterDTO> getByName(String name){

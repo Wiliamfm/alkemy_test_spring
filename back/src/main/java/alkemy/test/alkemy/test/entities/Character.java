@@ -20,6 +20,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Character {
 
+    public Character(String name2, String image2) {
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
