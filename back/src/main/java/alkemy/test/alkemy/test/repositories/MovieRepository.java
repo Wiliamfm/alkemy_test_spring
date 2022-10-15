@@ -12,8 +12,8 @@ import alkemy.test.alkemy.test.entities.Movie;
 public interface MovieRepository extends CrudRepository<Movie, Integer>{
 
     public List<Movie> findAllByTitleContainingIgnoreCase(String title);
-    public List<Movie> findAllByGenre(Genre genre);
-    public List<Movie> orderByCreationDateAsc();
-    public List<Movie> orderByCreationDateDesc();
+    public List<Movie> findAllByGenres(Genre genre);
+    public List<Movie> findAllByOrderByCreationDateAsc();
+    public List<Movie> findAllByOrderByCreationDateDesc();
     
 }

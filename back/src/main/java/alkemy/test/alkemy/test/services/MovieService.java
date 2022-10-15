@@ -64,13 +64,13 @@ public class MovieService {
     }
 
     public List<MovieDTO> getByGenre(Integer genre) {
-        return movieMapper.toMoviesDTO(movieRepository.findAllByGenre(genreMapper.toGenre(genreService.getById(genre))));
+        return movieMapper.toMoviesDTO(movieRepository.findAllByGenres(genreMapper.toGenre(genreService.getById(genre))));
     }
 
     public List<MovieDTO> getByDate(String order) {
         if(order.equalsIgnoreCase("asc")){
-            return movieMapper.toMoviesDTO(movieRepository.orderByCreationDateAsc());
+            return movieMapper.toMoviesDTO(movieRepository.findAllByOrderByCreationDateAsc());
         }
-        return movieMapper.toMoviesDTO(movieRepository.orderByCreationDateDesc());
+        return movieMapper.toMoviesDTO(movieRepository.findAllByOrderByCreationDateDesc());
     }
 }
