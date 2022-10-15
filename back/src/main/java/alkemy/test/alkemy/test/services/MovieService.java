@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import alkemy.test.alkemy.test.Mapper.GenreMapper;
 import alkemy.test.alkemy.test.Mapper.MovieMapper;
 import alkemy.test.alkemy.test.dtos.MovieDTO;
 import alkemy.test.alkemy.test.entities.Movie;
@@ -15,9 +16,13 @@ import alkemy.test.alkemy.test.repositories.MovieRepository;
 public class MovieService {
 
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
     @Autowired
-    MovieMapper movieMapper;
+    private MovieMapper movieMapper;
+    @Autowired
+    private GenreService genreService;
+    @Autowired
+    private GenreMapper genreMapper;
 
     public List<MovieDTO> getAll(){
         List<Movie> movies= (List<Movie>) movieRepository.findAll();
@@ -28,6 +33,10 @@ public class MovieService {
         return movieMapper.toMovieDTO(movieRepository.findById(id).map(movie -> {
             return movie;
         }).orElseGet(null));
+    }
+
+    public List<MovieDTO> getByTitle(String title){
+        return movieMapper.toMoviesDTO(movieRepository.findAllByTitleContainingIgnoreCase(title));
     }
 
     @Transactional
@@ -53,5 +62,15 @@ public class MovieService {
         movieRepository.deleteById(id);
         return movie;
     }
-    
+
+    public List<MovieDTO> getByGenre(Integer genre) {
+        return movieMapper.toMoviesDTO(movieRepository.findAllByGenre(genreMapper.toGenre(genreService.getById(genre))));
+    }
+
+    public List<MovieDTO> getByDate(String order) {
+        if(order.equalsIgnoreCase("asc")){
+            return movieMapper.toMoviesDTO(movieRepository.orderByCreationDateAsc());
+        }
+        return movieMapper.toMoviesDTO(movieRepository.orderByCreationDateDesc());
+    }
 }

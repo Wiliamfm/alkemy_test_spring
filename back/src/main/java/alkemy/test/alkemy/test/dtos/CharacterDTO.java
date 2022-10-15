@@ -4,13 +4,12 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
-public class CharacterDTO extends AbstractResponse{
+public class CharacterDTO{
     
+    private int id;
     private String image;
     private String name;
     private int age;
