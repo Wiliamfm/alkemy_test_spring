@@ -14,7 +14,6 @@ import alkemy.test.alkemy.test.entities.Character;
 import alkemy.test.alkemy.test.entities.Genre;
 import alkemy.test.alkemy.test.entities.Movie;
 import alkemy.test.alkemy.test.services.CharacterService;
-import alkemy.test.alkemy.test.services.Domain.CharacterDTOService;
 import alkemy.test.alkemy.test.services.Domain.GenreService;
 
 @Mapper(componentModel = "spring")
