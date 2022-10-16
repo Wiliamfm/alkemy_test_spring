@@ -5,9 +5,11 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class MovieDTO{
 
     private int id;
@@ -15,8 +17,8 @@ public class MovieDTO{
     private String title;
     private LocalDate creationDate;
     private int calification;
-    private List<CharacterDTO> characters;
-    private List<GenreDTO> genres;
+    private List<String> characters;
+    private List<String> genres;
 
     protected MovieDTO(String image, String title, LocalDate creationDate){
         this.image= image;

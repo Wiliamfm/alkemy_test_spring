@@ -27,6 +27,9 @@ public interface CharacterMapper {
     @Mapping(target = "id", ignore = true)
     Character toCharacter(CharacterDTO characterDTO);
 
+    @InheritInverseConfiguration
+    List<Character> toCharacters(List<CharacterDTO> characters);
+
     //default CharacterDTO toCharacterDTO(Character character, String o){
         //return new CharacterDTO(character.getImage(), character.getName());
     //}

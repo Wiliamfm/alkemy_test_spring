@@ -51,11 +51,14 @@ public class MovieController {
     @PostMapping
     private ResponseEntity<? extends Object> create(@RequestBody MovieDTO movieDTO){
         try {
-            MovieDTO newMovie= movieService.create(movieDTO);
-            if(movieDTO != null){
-                return ResponseEntity.status(HttpStatus.CREATED).body(newMovie);
-            }
-            return ResponseEntity.status(HttpStatus.OK).body(new ErrorDTO("Movie no created"));
+					if(movieDTO.getCalification() < 0 || movieDTO.getCalification() > 5){
+            return ResponseEntity.status(HttpStatus.OK).body(new ErrorDTO("Calification no valid"));
+					}
+          MovieDTO newMovie= movieService.create(movieDTO);
+          if(newMovie == null){
+          	return ResponseEntity.status(HttpStatus.OK).body(new ErrorDTO("Movie no created"));
+          }
+          return ResponseEntity.status(HttpStatus.CREATED).body(newMovie);
         } catch(Exception e){
             return new ResponseEntity<ErrorDTO>(new ErrorDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
         }

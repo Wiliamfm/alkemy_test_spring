@@ -32,7 +32,7 @@ public class MovieService {
     public MovieDTO getById(int id){
         return movieMapper.toMovieDTO(movieRepository.findById(id).map(movie -> {
             return movie;
-        }).orElseGet(null));
+        }).orElse(null));
     }
 
     public List<MovieDTO> getByTitle(String title){

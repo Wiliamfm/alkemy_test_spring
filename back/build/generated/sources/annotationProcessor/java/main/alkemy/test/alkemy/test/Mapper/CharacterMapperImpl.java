@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T19:22:35-0500",
+    date = "2022-10-15T21:10:14-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.jar, environment: Java 17.0.4 (Private Build)"
 )
 @Component
@@ -90,6 +90,20 @@ public class CharacterMapperImpl implements CharacterMapper {
         character.setMovies( movieDTOListToMovieList( characterDTO.getMovies() ) );
 
         return character;
+    }
+
+    @Override
+    public List<Character> toCharacters(List<CharacterDTO> characters) {
+        if ( characters == null ) {
+            return null;
+        }
+
+        List<Character> list = new ArrayList<Character>( characters.size() );
+        for ( CharacterDTO characterDTO : characters ) {
+            list.add( toCharacter( characterDTO ) );
+        }
+
+        return list;
     }
 
     protected List<Movie> movieDTOListToMovieList(List<MovieDTO> list) {

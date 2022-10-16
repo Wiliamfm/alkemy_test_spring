@@ -14,9 +14,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Movie {
 
     public Movie(String image2, String title2, LocalDate creationDate2) {
