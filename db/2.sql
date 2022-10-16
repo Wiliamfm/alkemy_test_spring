@@ -3,18 +3,15 @@
 -- Genre table
 
 insert into genre (id, name, image) values (1, 'Crime|Drama', 'http://dummyimage.com/212x100.png/ff4444/ffffff');
-insert into genre (id, name, image) values (2, 'Comedy|Drama', 'http://dummyimage.com/214x100.png/ff4444/ffffff');
-insert into genre (id, name, image) values (3, 'Drama', 'http://dummyimage.com/158x100.png/cc0000/ffffff');
 insert into genre (id, name, image) values (4, 'Adventure|Sci-Fi', 'http://dummyimage.com/106x100.png/cc0000/ffffff');
 insert into genre (id, name, image) values (5, 'Horror|Sci-Fi|Thriller', 'http://dummyimage.com/171x100.png/ff4444/ffffff');
 insert into genre (id, name, image) values (6, 'Drama', 'http://dummyimage.com/238x100.png/ff4444/ffffff');
-insert into genre (id, name, image) values (7, 'Drama', 'http://dummyimage.com/248x100.png/ff4444/ffffff');
 insert into genre (id, name, image) values (8, 'Drama|Fantasy', 'http://dummyimage.com/151x100.png/5fa2dd/ffffff');
 insert into genre (id, name, image) values (9, 'Comedy', 'http://dummyimage.com/154x100.png/dddddd/000000');
-insert into genre (id, name, image) values (10, 'Drama', 'http://dummyimage.com/124x100.png/cc0000/ffffff');
 
 -- Movie table
 
+/*
 insert into movie (id, image, title, creation_date, calification) values (1, 'http://dummyimage.com/140x100.png/dddddd/000000', 'Contagion / Bio Slime', '24/11/1983', 5);
 insert into movie (id, image, title, creation_date, calification) values (2, 'http://dummyimage.com/236x100.png/cc0000/ffffff', 'Island of Dr. Moreau, The', '28/11/1971', 5);
 insert into movie (id, image, title, creation_date, calification) values (3, 'http://dummyimage.com/137x100.png/ff4444/ffffff', 'Utopia', '11/09/1986', 1);
@@ -204,3 +201,4 @@ insert into actor_movie (id, actor, movie) values (97, 9, 13);
 insert into actor_movie (id, actor, movie) values (98, 11, 13);
 insert into actor_movie (id, actor, movie) values (99, 13, 10);
 insert into actor_movie (id, actor, movie) values (100, 8, 14);
+*/
