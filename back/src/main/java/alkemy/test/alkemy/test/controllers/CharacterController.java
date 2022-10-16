@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import alkemy.test.alkemy.test.dtos.CharacterDTO;
 import alkemy.test.alkemy.test.dtos.ErrorDTO;
-import alkemy.test.alkemy.test.services.CharacterService;
+import alkemy.test.alkemy.test.services.Domain.CharacterDTOService;
 
 @RestController
 @RequestMapping("/characters")
@@ -27,14 +27,14 @@ import alkemy.test.alkemy.test.services.CharacterService;
 public class CharacterController {
 
     @Autowired
-    private CharacterService characterService;
+    private CharacterDTOService characterService;
     
     @GetMapping
     public ResponseEntity<? extends Object> getAll(@RequestParam(required = false) String name, @RequestParam(required = false) Integer age, @RequestParam(required = false) Integer movieId){
         try{
             List<CharacterDTO> characters = new ArrayList<CharacterDTO>();
             if(name != null){
-                characters.addAll(characterService.getByName(name));
+                characters.addAll(characterService.getAllByName(name));
             }if (age != null){
                 characters.addAll(characterService.getByAge(age));
             }if (movieId != null){

@@ -13,7 +13,9 @@ import alkemy.test.alkemy.test.dtos.MovieDTO;
 import alkemy.test.alkemy.test.entities.Character;
 import alkemy.test.alkemy.test.entities.Genre;
 import alkemy.test.alkemy.test.entities.Movie;
-import alkemy.test.alkemy.test.services.GenreService;
+import alkemy.test.alkemy.test.services.CharacterService;
+import alkemy.test.alkemy.test.services.Domain.CharacterDTOService;
+import alkemy.test.alkemy.test.services.Domain.GenreService;
 
 @Mapper(componentModel = "spring")
 public abstract class MovieMapper {
@@ -22,23 +24,37 @@ public abstract class MovieMapper {
     private GenreService genreService;
     @Autowired
     private GenreMapper genreMapper;
+    @Autowired
+    private CharacterService characterService;
 
     public abstract MovieDTO toMovieDTO(Movie movie);
 
     protected List<Character> mapCharacters(List<String> characterNames){
-        List<Character> characters= new ArrayList<>();
-        characterNames.forEach(c -> {
-            characters.add(null);
-        });
-        return characters;
+        try {
+            List<Character> characters= new ArrayList<>();
+            characterNames.forEach(c -> {
+                Character character = characterService.getByName(c);
+                System.out.println(character);
+                characters.add(character);
+            });
+            return characters;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     protected List<String> mapCharacterNames(List<Character> characters){
-        List<String> characterNames= new ArrayList<>();
-        characters.forEach(c -> {
-            characterNames.add(c.getName());
-        });
-        return characterNames;
+        try {
+            List<String> characterNames= new ArrayList<>();
+            characters.forEach(c -> {
+                characterNames.add(c.getName());
+            });
+            return characterNames;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     protected List<Genre> mapGenres(List<String> genreNames){

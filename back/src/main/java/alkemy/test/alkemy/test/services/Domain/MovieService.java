@@ -1,4 +1,4 @@
-package alkemy.test.alkemy.test.services;
+package alkemy.test.alkemy.test.services.Domain;
 
 import java.util.List;
 
@@ -41,6 +41,7 @@ public class MovieService {
 
     @Transactional
     public MovieDTO create(MovieDTO movieDTO) throws IllegalArgumentException{
+        System.out.println(movieMapper.toMovie(movieDTO));
         return movieMapper.toMovieDTO(movieRepository.save(movieMapper.toMovie(movieDTO)));
     }
 

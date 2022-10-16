@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import alkemy.test.alkemy.test.dtos.ErrorDTO;
 import alkemy.test.alkemy.test.dtos.MovieDTO;
-import alkemy.test.alkemy.test.services.MovieService;
+import alkemy.test.alkemy.test.services.Domain.MovieService;
 
 @RestController
 @RequestMapping("/movies")

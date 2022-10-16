@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import alkemy.test.alkemy.test.dtos.ErrorDTO;
-import alkemy.test.alkemy.test.services.GenreService;
+import alkemy.test.alkemy.test.services.Domain.GenreService;
 
 @RestController
 @RequestMapping("/genres")
