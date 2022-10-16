@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T18:42:40-0500",
+    date = "2022-10-15T19:22:35-0500",
     comments = "version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.jar, environment: Java 17.0.4 (Private Build)"
 )
 @Component
@@ -27,29 +27,21 @@ public class CharacterMapperImpl implements CharacterMapper {
             return null;
         }
 
-        int id = 0;
-        String image = null;
-        String name = null;
-        int age = 0;
-        double weight = 0.0d;
-        String history = null;
-        List<MovieDTO> movies = null;
+        CharacterDTO characterDTO = new CharacterDTO();
 
         if ( character.getId() != null ) {
-            id = character.getId();
+            characterDTO.setId( character.getId() );
         }
-        image = character.getImage();
-        name = character.getName();
+        characterDTO.setImage( character.getImage() );
+        characterDTO.setName( character.getName() );
         if ( character.getAge() != null ) {
-            age = character.getAge();
+            characterDTO.setAge( character.getAge() );
         }
         if ( character.getWeight() != null ) {
-            weight = character.getWeight();
+            characterDTO.setWeight( character.getWeight() );
         }
-        history = character.getHistory();
-        movies = movieMapper.toMoviesDTO( character.getMovies() );
-
-        CharacterDTO characterDTO = new CharacterDTO( id, image, name, age, weight, history, movies );
+        characterDTO.setHistory( character.getHistory() );
+        characterDTO.setMovies( movieMapper.toMoviesDTO( character.getMovies() ) );
 
         return characterDTO;
     }
@@ -60,18 +52,10 @@ public class CharacterMapperImpl implements CharacterMapper {
             return null;
         }
 
-        String name1 = null;
-        name1 = name;
-        String image1 = null;
-        image1 = image;
+        CharacterDTO characterDTO = new CharacterDTO();
 
-        int id = 0;
-        int age = 0;
-        double weight = 0.0d;
-        String history = null;
-        List<MovieDTO> movies = null;
-
-        CharacterDTO characterDTO = new CharacterDTO( id, image1, name1, age, weight, history, movies );
+        characterDTO.setName( name );
+        characterDTO.setImage( image );
 
         return characterDTO;
     }
